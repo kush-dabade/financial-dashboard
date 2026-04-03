@@ -34,23 +34,6 @@ export const useFinanceStore = create<Store>()(
     }),
     {
       name: "finance-storage",
-      merge: (persistedState, currentState) => {
-        const persisted = persistedState as Partial<Store> | undefined;
-        const persistedTransactions = persisted?.transactions ?? [];
-        const mergedTransactions = [
-          ...persistedTransactions,
-          ...currentState.transactions,
-        ].filter(
-          (transaction, index, all) =>
-            all.findIndex((item) => item.id === transaction.id) === index
-        );
-
-        return {
-          ...currentState,
-          ...persisted,
-          transactions: mergedTransactions,
-        };
-      },
     }
   )
 );

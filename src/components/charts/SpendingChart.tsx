@@ -32,8 +32,8 @@ const SpendingChart = () => {
 
   return (
     <div className="bg-white/5 border border-white/10 rounded-2xl p-6 h-85 md:h-95 backdrop-blur-xl overflow-hidden">
-      
       <h2 className="text-lg font-semibold text-white mb-4">
+        Category Spend
       </h2>
 
       <div className="h-[65%]">
@@ -73,7 +73,7 @@ const SpendingChart = () => {
 
       <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs">
         {data.map((item, index) => {
-          const percentage = ((item.value / total) * 100).toFixed(1);
+          const percentage = total > 0 ? ((item.value / total) * 100).toFixed(1) : "0.0";
 
           return (
             <div

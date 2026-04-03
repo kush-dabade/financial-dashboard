@@ -21,14 +21,17 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
   if (!open) return null;
 
   const handleSubmit = () => {
-    if (!form.amount || !form.description || !form.date) return;
+    const amount = Number(form.amount);
+    const trimmedDescription = form.description.trim();
+
+    if (!Number.isFinite(amount) || amount <= 0 || !trimmedDescription || !form.date) return;
 
     const newTransaction: Transaction = {
       id: crypto.randomUUID(),
-      amount: Number(form.amount),
+      amount,
       category: form.category,
       type: form.type,
-      description: form.description,
+      description: trimmedDescription,
       date: form.date,
     };
 

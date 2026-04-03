@@ -34,6 +34,7 @@ const InsightsPanel = () => {
     <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl h-full flex flex-col">
       
       <h2 className="text-lg font-semibold text-white mb-4">
+        Insights
       </h2>
 
       <div className="flex flex-col flex-1 gap-4">
