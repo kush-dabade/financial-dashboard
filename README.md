@@ -141,30 +141,3 @@ src/
   types/
 ```
 
-## Screenshots
-
-### Dashboard
-
-![Dashboard](./src/assets/hero.png)
-
-### Suggested Additional Screenshots
-
-Add these to improve documentation completeness:
-
-- Viewer mode (no add/delete actions)
-- Admin mode (add/delete visible)
-- Add Transaction modal open
-- Filtered transaction table results
-
-You can place images in `public/screenshots/` and reference them like:
-
-```md
-![Viewer Mode](./public/screenshots/viewer-mode.png)
-![Admin Mode](./public/screenshots/admin-mode.png)
-```
-
-## Notes
-
-- Transactions use INR-style display (`₹`) across the dashboard.
-- Data is currently local and mock-driven; no backend API is required.
-
