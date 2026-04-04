@@ -49,8 +49,8 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-      <div className="bg-neutral-900 border border-white/10 rounded-xl p-6 w-full max-w-md space-y-4">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 micro-reveal">
+      <div className="bg-neutral-900 border border-white/10 rounded-xl p-6 w-full max-w-md space-y-4 micro-surface micro-shine">
         <h2 className="text-lg font-semibold">Add Transaction</h2>
 
         <input
@@ -60,7 +60,7 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
           onChange={(e) =>
             setForm({ ...form, amount: e.target.value })
           }
-          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2"
+          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2 micro-control"
         />
 
         <input
@@ -70,7 +70,7 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
           onChange={(e) =>
             setForm({ ...form, description: e.target.value })
           }
-          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2"
+          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2 micro-control"
         />
 
         <input
@@ -79,7 +79,7 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
           onChange={(e) =>
             setForm({ ...form, date: e.target.value })
           }
-          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2"
+          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2 micro-control"
         />
 
         <select
@@ -87,7 +87,7 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
           onChange={(e) =>
             setForm({ ...form, category: e.target.value as Category })
           }
-          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2"
+          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2 micro-control"
         >
           <option>Food</option>
           <option>Shopping</option>
@@ -102,7 +102,7 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
           onChange={(e) =>
             setForm({ ...form, type: e.target.value as TransactionType })
           }
-          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2"
+          className="w-full bg-neutral-800 border border-white/10 rounded-md px-3 py-2 micro-control"
         >
           <option value="expense">Expense</option>
           <option value="income">Income</option>
@@ -111,14 +111,14 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
         <div className="flex justify-end gap-3 pt-2">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm bg-white/10 rounded-md"
+            className="px-4 py-2 text-sm bg-white/10 rounded-md micro-control"
           >
             Cancel
           </button>
 
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 text-sm bg-white text-black rounded-md"
+            className="px-4 py-2 text-sm bg-white text-black rounded-md micro-control micro-shine"
           >
             Add
           </button>

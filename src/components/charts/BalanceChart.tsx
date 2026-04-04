@@ -55,7 +55,7 @@ const BalanceChart = () => {
   );
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 h-85 md:h-95 backdrop-blur-xl overflow-hidden">
+    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 h-85 md:h-95 backdrop-blur-xl overflow-hidden micro-surface micro-reveal">
       <h2 className="text-lg font-semibold text-white mb-4">Balance Trend</h2>
 
       <div className="h-[75%]">

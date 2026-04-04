@@ -31,7 +31,7 @@ const SpendingChart = () => {
   const total = data.reduce((acc, curr) => acc + curr.value, 0);
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 h-85 md:h-95 backdrop-blur-xl overflow-hidden">
+    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 h-85 md:h-95 backdrop-blur-xl overflow-hidden micro-surface micro-reveal">
       <h2 className="text-lg font-semibold text-white mb-4">
         Category Spend
       </h2>
@@ -51,7 +51,7 @@ const SpendingChart = () => {
                 <Cell
                   key={index}
                   fill={COLORS[index % COLORS.length]}
-                  className="hover:opacity-80 transition"
+                  className="hover:opacity-80 transition duration-200"
                 />
               ))}
             </Pie>
@@ -81,7 +81,7 @@ const SpendingChart = () => {
               className="flex items-center gap-2 text-white/70"
             >
               <span
-                className="w-2.5 h-2.5 rounded-full"
+                className="w-2.5 h-2.5 rounded-full micro-chip"
                 style={{
                   backgroundColor: COLORS[index % COLORS.length],
                 }}

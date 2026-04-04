@@ -13,8 +13,13 @@ const Dashboard = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-6 space-y-6">
-        <SummaryCards />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="micro-reveal" style={{ animationDelay: "40ms" }}>
+          <SummaryCards />
+        </div>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 micro-reveal"
+          style={{ animationDelay: "90ms" }}
+        >
           <div className="lg:col-span-2">
             <BalanceChart />
           </div>
@@ -23,7 +28,10 @@ const Dashboard = () => {
             <SpendingChart />
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 micro-reveal"
+          style={{ animationDelay: "140ms" }}
+        >
           <div className="lg:col-span-2">
             <TransactionTable />
           </div>

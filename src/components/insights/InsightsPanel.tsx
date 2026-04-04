@@ -31,7 +31,7 @@ const InsightsPanel = () => {
       : null;
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl h-full flex flex-col">
+    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl h-full flex flex-col micro-surface micro-reveal">
       
       <h2 className="text-lg font-semibold text-white mb-4">
         Insights
@@ -39,7 +39,7 @@ const InsightsPanel = () => {
 
       <div className="flex flex-col flex-1 gap-4">
 
-        <div className="group relative bg-white/5 border border-white/10 rounded-xl p-5 flex-1 transition-all duration-300 hover:bg-white/10 overflow-hidden">
+        <div className="group relative bg-white/5 border border-white/10 rounded-xl p-5 flex-1 transition-all duration-300 hover:bg-white/10 overflow-hidden micro-surface micro-shine">
           
           <div className="absolute inset-0 bg-linear-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition" />
 
@@ -52,7 +52,7 @@ const InsightsPanel = () => {
               <div className="mt-2">
                 {topCategory ? (
                   <span
-                    className={`px-3 py-1 rounded-full text-xs font-medium border border-white/10 backdrop-blur-md ${
+                    className={`px-3 py-1 rounded-full text-xs font-medium border border-white/10 backdrop-blur-md micro-chip ${
                       categoryColors[topCategory.category] ||
                       "bg-white/10 text-white"
                     }`}
@@ -77,7 +77,7 @@ const InsightsPanel = () => {
 
         <div className="grid grid-cols-2 gap-4 flex-1">
 
-          <div className="group relative bg-white/5 border border-white/10 rounded-xl p-4 transition-all duration-300 hover:bg-white/10">
+          <div className="group relative bg-white/5 border border-white/10 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 micro-surface">
             
             <div className="flex items-start justify-between">
               <div>
@@ -102,7 +102,7 @@ const InsightsPanel = () => {
             </div>
           </div>
 
-          <div className="group relative bg-white/5 border border-white/10 rounded-xl p-4 transition-all duration-300 hover:bg-white/10">
+          <div className="group relative bg-white/5 border border-white/10 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 micro-surface">
             
             <div className="flex items-start justify-between">
               <div>

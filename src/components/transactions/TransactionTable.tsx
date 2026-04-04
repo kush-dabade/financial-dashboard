@@ -24,12 +24,15 @@ const TransactionTable = () => {
 
   const totalPages = Math.max(
     1,
-    Math.ceil(filteredTransactions.length / ITEMS_PER_PAGE)
+    Math.ceil(filteredTransactions.length / ITEMS_PER_PAGE),
   );
   const safeCurrentPage = Math.min(currentPage, totalPages);
   const startIndex = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  const paginatedTransactions = filteredTransactions.slice(startIndex, endIndex);
+  const paginatedTransactions = filteredTransactions.slice(
+    startIndex,
+    endIndex,
+  );
 
   const categoryColors = {
     Food: "bg-orange-500/20 text-orange-300",
@@ -41,7 +44,7 @@ const TransactionTable = () => {
   };
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl space-y-6">
+    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl space-y-6 micro-surface micro-reveal">
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h2 className="text-xl font-semibold text-white tracking-tight">
@@ -61,16 +64,16 @@ const TransactionTable = () => {
               setSearch(e.target.value);
               setCurrentPage(1);
             }}
-            className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 w-55 transition"
+            className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 w-55 micro-control"
           />
 
-            <select
+          <select
             value={categoryFilter}
             onChange={(e) => {
               setCategoryFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 transition"
+            className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 micro-control"
           >
             <option value="all">All Categories</option>
             <option value="Food">Food</option>
@@ -84,7 +87,7 @@ const TransactionTable = () => {
           {role === "admin" && (
             <button
               onClick={() => setOpenModal(true)}
-              className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:scale-105 active:scale-95 transition-all shadow hover:shadow-lg"
+              className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:scale-[1.03] active:scale-95 transition-all shadow hover:shadow-lg micro-control micro-shine"
             >
               Add Transaction
             </button>
@@ -95,7 +98,7 @@ const TransactionTable = () => {
       <div className="overflow-hidden rounded-xl border border-white/10">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-white/5 text-white/60 sticky top-0 backdrop-blur z-10">
+            <thead className="sticky top-0 z-20 bg-black/40 backdrop-blur-xl border-b border-white/10 text-white/50">
               <tr className="text-left">
                 <th className="px-5 py-3 font-medium">Date</th>
                 <th className="px-5 py-3 font-medium">Description</th>
@@ -124,10 +127,11 @@ const TransactionTable = () => {
                   </td>
                 </tr>
               ) : (
-                paginatedTransactions.map((t) => (
+                paginatedTransactions.map((t, index) => (
                   <tr
                     key={t.id}
-                    className="group hover:bg-white/5 transition-all duration-200 hover:-translate-y-px"
+                    className="group hover:bg-white/5 transition-all duration-200 hover:-translate-y-px micro-reveal"
+                    style={{ animationDelay: `${index * 28}ms` }}
                   >
                     <td className="px-5 py-4 text-white/70">{t.date}</td>
 
@@ -135,7 +139,7 @@ const TransactionTable = () => {
 
                     <td className="px-5 py-4">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border border-white/10 ${categoryColors[t.category]}`}
+                        className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border border-white/10 micro-chip ${categoryColors[t.category]}`}
                       >
                         {t.category}
                       </span>
@@ -159,7 +163,7 @@ const TransactionTable = () => {
                       <td className="px-5 py-4 text-right">
                         <button
                           onClick={() => deleteTransaction(t.id)}
-                          className="text-red-400 opacity-70 group-hover:opacity-100 hover:text-red-300 transition"
+                          className="text-red-400 opacity-70 group-hover:opacity-100 hover:text-red-300 transition micro-control rounded-md px-2 py-1"
                         >
                           Delete
                         </button>
@@ -185,7 +189,7 @@ const TransactionTable = () => {
             <button
               onClick={() => setCurrentPage(Math.max(1, safeCurrentPage - 1))}
               disabled={safeCurrentPage === 1}
-              className="px-3 py-1.5 rounded-md text-sm bg-white/10 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-white/20 transition"
+              className="px-3 py-1.5 rounded-md text-sm bg-white/10 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-white/20 transition micro-control"
             >
               Previous
             </button>
@@ -195,9 +199,11 @@ const TransactionTable = () => {
             </span>
 
             <button
-              onClick={() => setCurrentPage(Math.min(totalPages, safeCurrentPage + 1))}
+              onClick={() =>
+                setCurrentPage(Math.min(totalPages, safeCurrentPage + 1))
+              }
               disabled={safeCurrentPage === totalPages}
-              className="px-3 py-1.5 rounded-md text-sm bg-white/10 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-white/20 transition"
+              className="px-3 py-1.5 rounded-md text-sm bg-white/10 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-white/20 transition micro-control"
             >
               Next
             </button>

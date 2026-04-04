@@ -49,6 +49,10 @@
 }
 
 :root {
+    --micro-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --micro-duration-fast: 160ms;
+    --micro-duration-base: 240ms;
+    --micro-duration-slow: 420ms;
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -127,4 +131,112 @@
   html {
     @apply font-sans;
     }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-sweep {
+  from {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  to {
+    transform: translateX(140%);
+    opacity: 0;
+  }
+}
+
+@layer components {
+  .micro-reveal {
+    animation: fade-up var(--micro-duration-slow) var(--micro-ease) both;
+  }
+
+  .micro-surface {
+    transition:
+      transform var(--micro-duration-base) var(--micro-ease),
+      border-color var(--micro-duration-base) var(--micro-ease),
+      background-color var(--micro-duration-base) var(--micro-ease),
+      box-shadow var(--micro-duration-base) var(--micro-ease);
+  }
+
+  .micro-surface:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--border) 78%, white 22%);
+  }
+
+  .micro-control {
+    transition:
+      transform var(--micro-duration-fast) var(--micro-ease),
+      border-color var(--micro-duration-fast) var(--micro-ease),
+      box-shadow var(--micro-duration-fast) var(--micro-ease),
+      background-color var(--micro-duration-fast) var(--micro-ease);
+  }
+
+  .micro-control:hover {
+    border-color: color-mix(in oklab, var(--border) 65%, white 35%);
+  }
+
+  .micro-control:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 35%, transparent);
+  }
+
+  .micro-chip {
+    transition:
+      transform var(--micro-duration-fast) var(--micro-ease),
+      filter var(--micro-duration-fast) var(--micro-ease),
+      background-color var(--micro-duration-fast) var(--micro-ease);
+  }
+
+  .micro-chip:hover {
+    transform: translateY(-1px);
+    filter: saturate(1.15);
+  }
+
+  .micro-shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .micro-shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      rgb(255 255 255 / 0.18) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+
+  .micro-shine:hover::after {
+    animation: glow-sweep 820ms var(--micro-ease) 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

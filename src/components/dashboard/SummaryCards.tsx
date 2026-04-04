@@ -25,7 +25,10 @@ const SummaryCards = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
 
-      <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-[0_0_50px_rgba(0,0,0,0.7)]">
+      <div
+        className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl overflow-hidden micro-surface micro-shine shadow-[0_0_50px_rgba(0,0,0,0.7)] micro-reveal"
+        style={{ animationDelay: "80ms" }}
+      >
 
         <div className="absolute inset-0 bg-linear-to-r from-green-400/10 to-emerald-600/10 opacity-0 group-hover:opacity-100 transition" />
 
@@ -51,7 +54,10 @@ const SummaryCards = () => {
         </p>
       </div>
 
-      <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-[0_0_40px_rgba(0,0,0,0.6)]">
+      <div
+        className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl overflow-hidden micro-surface micro-shine shadow-[0_0_40px_rgba(0,0,0,0.6)] micro-reveal"
+        style={{ animationDelay: "140ms" }}
+      >
 
         <div className="absolute inset-0 bg-linear-to-r from-green-400/10 to-green-500/10 opacity-0 group-hover:opacity-100 transition" />
 
@@ -74,7 +80,10 @@ const SummaryCards = () => {
         </p>
       </div>
 
-      <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-[0_0_40px_rgba(0,0,0,0.6)]">
+      <div
+        className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl overflow-hidden micro-surface micro-shine shadow-[0_0_40px_rgba(0,0,0,0.6)] micro-reveal"
+        style={{ animationDelay: "200ms" }}
+      >
 
         <div className="absolute inset-0 bg-linear-to-r from-red-400/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition" />
 
