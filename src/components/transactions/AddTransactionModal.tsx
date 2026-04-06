@@ -49,8 +49,14 @@ const AddTransactionModal = ({ open, onClose }: Props) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 micro-reveal">
-      <div className="bg-neutral-900 border border-white/10 rounded-xl p-6 w-full max-w-md space-y-4 micro-surface micro-shine">
+    <div
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 micro-reveal"
+      onClick={onClose}
+    >
+      <div
+        className="bg-neutral-900 border border-white/10 rounded-xl p-6 w-full max-w-md space-y-4 micro-surface micro-shine micro-modal"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="text-lg font-semibold">Add Transaction</h2>
 
         <input

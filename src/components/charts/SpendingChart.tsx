@@ -1,10 +1,4 @@
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { useFinanceStore } from "../../store/useFinanceStore";
 import { getCategoryBreakdown } from "../../data/helpers";
 
@@ -15,9 +9,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   return (
     <div className="bg-black/80 backdrop-blur-md border border-white/10 px-3 py-2 rounded-lg text-sm shadow-lg">
       <p className="text-white">{payload[0].name}</p>
-      <p className="text-white/70">
-        ₹{payload[0].value.toLocaleString()}
-      </p>
+      <p className="text-white/70">₹{payload[0].value.toLocaleString()}</p>
     </div>
   );
 };
@@ -32,9 +24,7 @@ const SpendingChart = () => {
 
   return (
     <div className="bg-white/5 border border-white/10 rounded-2xl p-6 h-85 md:h-95 backdrop-blur-xl overflow-hidden micro-surface micro-reveal">
-      <h2 className="text-lg font-semibold text-white mb-4">
-        Category Spend
-      </h2>
+      <h2 className="text-lg font-semibold text-white mb-4">Category Spend</h2>
 
       <div className="h-[65%]">
         <ResponsiveContainer width="100%" height="100%">
@@ -73,7 +63,8 @@ const SpendingChart = () => {
 
       <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs">
         {data.map((item, index) => {
-          const percentage = total > 0 ? ((item.value / total) * 100).toFixed(1) : "0.0";
+          const percentage =
+            total > 0 ? ((item.value / total) * 100).toFixed(1) : "0.0";
 
           return (
             <div

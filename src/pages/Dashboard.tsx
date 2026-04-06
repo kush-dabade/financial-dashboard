@@ -7,7 +7,7 @@ import InsightsPanel from "../components/insights/InsightsPanel";
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-linear-to-br from-black via-neutral-950 to-neutral-900 text-white">
+    <div className="min-h-screen bg-linear-to-br from-black via-neutral-950 to-neutral-900 text-white micro-page">
       <div className="sticky top-0 z-50 border-b border-white/10 backdrop-blur-md bg-neutral-950/70">
         <Navbar />
       </div>
@@ -29,14 +29,14 @@ const Dashboard = () => {
           </div>
         </div>
         <div
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6 micro-reveal"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch micro-reveal"
           style={{ animationDelay: "140ms" }}
         >
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 h-full">
             <TransactionTable />
           </div>
 
-          <div>
+          <div className="h-full">
             <InsightsPanel />
           </div>
         </div>

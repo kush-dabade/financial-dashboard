@@ -4,7 +4,7 @@ import AddTransactionModal from "./AddTransactionModal";
 
 const TransactionTable = () => {
   const { transactions, role, deleteTransaction } = useFinanceStore();
-  const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = 5;
 
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
@@ -21,6 +21,19 @@ const TransactionTable = () => {
 
     return matchesSearch && matchesCategory;
   });
+  const totalIncome = filteredTransactions
+    .filter((t) => t.type === "income")
+    .reduce((sum, t) => sum + t.amount, 0);
+  const totalExpense = filteredTransactions
+    .filter((t) => t.type === "expense")
+    .reduce((sum, t) => sum + t.amount, 0);
+  const hasActiveFilters = search.trim() !== "" || categoryFilter !== "all";
+
+  const clearFilters = () => {
+    setSearch("");
+    setCategoryFilter("all");
+    setCurrentPage(1);
+  };
 
   const totalPages = Math.max(
     1,
@@ -44,7 +57,7 @@ const TransactionTable = () => {
   };
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl space-y-6 micro-surface micro-reveal">
+    <div className="h-full bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl space-y-7 micro-surface micro-reveal micro-shine">
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h2 className="text-xl font-semibold text-white tracking-tight">
@@ -55,45 +68,88 @@ const TransactionTable = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 flex-wrap">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setCurrentPage(1);
-            }}
-            className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 w-55 micro-control"
-          />
-
-          <select
-            value={categoryFilter}
-            onChange={(e) => {
-              setCategoryFilter(e.target.value);
-              setCurrentPage(1);
-            }}
-            className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 micro-control"
+        {role === "admin" && (
+          <button
+            onClick={() => setOpenModal(true)}
+            className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:scale-[1.03] active:scale-95 transition-all shadow hover:shadow-lg micro-control micro-shine"
           >
-            <option value="all">All Categories</option>
-            <option value="Food">Food</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Bills">Bills</option>
-            <option value="Travel">Travel</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Salary">Salary</option>
-          </select>
+            Add Transaction
+          </button>
+        )}
+      </div>
 
-          {role === "admin" && (
-            <button
-              onClick={() => setOpenModal(true)}
-              className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:scale-[1.03] active:scale-95 transition-all shadow hover:shadow-lg micro-control micro-shine"
+      <div className="rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-xl px-4 py-4 md:px-5 md:py-4">
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-6 flex-wrap">
+            <div>
+              <p className="text-[11px] uppercase tracking-wide text-white/45">
+                Total Transactions
+              </p>
+              <p className="text-base font-semibold text-white">
+                {filteredTransactions.length}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-[11px] uppercase tracking-wide text-white/45">
+                Total Income
+              </p>
+              <p className="text-base font-semibold text-green-400">
+                ₹{totalIncome.toLocaleString()}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-[11px] uppercase tracking-wide text-white/45">
+                Total Expense
+              </p>
+              <p className="text-base font-semibold text-red-400">
+                ₹{totalExpense.toLocaleString()}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 flex-wrap sm:justify-end">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setCurrentPage(1);
+              }}
+              className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 w-full sm:w-56 micro-control"
+            />
+
+            <select
+              value={categoryFilter}
+              onChange={(e) => {
+                setCategoryFilter(e.target.value);
+                setCurrentPage(1);
+              }}
+              className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 micro-control"
             >
-              Add Transaction
+              <option value="all">All Categories</option>
+              <option value="Food">Food</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills</option>
+              <option value="Travel">Travel</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Salary">Salary</option>
+            </select>
+
+            <button
+              onClick={clearFilters}
+              disabled={!hasActiveFilters}
+              className="bg-white/5 border border-white/10 rounded-lg px-3.5 py-2 text-sm text-white/80 hover:brightness-110 active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed micro-control"
+            >
+              Clear filters
             </button>
-          )}
+          </div>
         </div>
       </div>
+
+      <div className="h-px bg-white/10" />
 
       <div className="overflow-hidden rounded-xl border border-white/10">
         <div className="overflow-x-auto">
@@ -130,7 +186,7 @@ const TransactionTable = () => {
                 paginatedTransactions.map((t, index) => (
                   <tr
                     key={t.id}
-                    className="group hover:bg-white/5 transition-all duration-200 hover:-translate-y-px micro-reveal"
+                    className="group hover:bg-white/5 micro-row micro-reveal"
                     style={{ animationDelay: `${index * 28}ms` }}
                   >
                     <td className="px-5 py-4 text-white/70">{t.date}</td>

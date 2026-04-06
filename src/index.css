@@ -144,6 +144,26 @@
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes glow-sweep {
   from {
     transform: translateX(-120%);
@@ -159,8 +179,16 @@
 }
 
 @layer components {
+  .micro-page {
+    animation: fade-in var(--micro-duration-slow) var(--micro-ease) both;
+  }
+
   .micro-reveal {
     animation: fade-up var(--micro-duration-slow) var(--micro-ease) both;
+  }
+
+  .micro-modal {
+    animation: scale-in var(--micro-duration-base) var(--micro-ease) both;
   }
 
   .micro-surface {
@@ -186,11 +214,16 @@
 
   .micro-control:hover {
     border-color: color-mix(in oklab, var(--border) 65%, white 35%);
+    transform: translateY(-1px);
   }
 
   .micro-control:focus-visible {
     transform: translateY(-1px);
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 35%, transparent);
+  }
+
+  .micro-control:active {
+    transform: translateY(0);
   }
 
   .micro-chip {
@@ -203,6 +236,28 @@
   .micro-chip:hover {
     transform: translateY(-1px);
     filter: saturate(1.15);
+  }
+
+  .micro-row {
+    transition:
+      background-color var(--micro-duration-fast) var(--micro-ease),
+      transform var(--micro-duration-fast) var(--micro-ease);
+  }
+
+  .micro-row:hover {
+    transform: translateY(-1px);
+  }
+
+  .micro-icon {
+    transition:
+      transform var(--micro-duration-fast) var(--micro-ease),
+      color var(--micro-duration-fast) var(--micro-ease),
+      opacity var(--micro-duration-fast) var(--micro-ease);
+  }
+
+  .group:hover .micro-icon {
+    transform: translateY(-1px);
+    opacity: 1;
   }
 
   .micro-shine {
